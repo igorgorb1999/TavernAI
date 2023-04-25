@@ -26,10 +26,10 @@ RUN chgrp -R 0 "${APP_HOME}/public" && \
 # Copy default chats, characters and user avatars to <folder>.default folder
 RUN \
   echo "*** Copy default chats, characters and user avatars to <folder>.default folder ***" && \
-  mv "./public/characters"    "./public/characters.default" --ignore-permissions && \
-  mv "./public/chats"         "./public/chats.default" --ignore-permissions && \
-  mv "./public/User Avatars"  "./public/User Avatars.default" --ignore-permissions && \
-  mv "./public/settings.json"   "./public/settings.json.default" --ignore-permissions && \
+  cp "./public/characters"    "./public/characters.default" && \
+  cp "./public/chats"         "./public/chats.default" && \
+  cp "./public/User Avatars"  "./public/User Avatars.default" && \
+  cp "./public/settings.json"   "./public/settings.json.default" && \
 
   echo "*** Create symbolic links to config directory ***" && \
   ln -s "${APP_HOME}/config/characters"     "${APP_HOME}/public/characters" && \
@@ -40,7 +40,7 @@ RUN \
 # Cleanup unnecessary files
 RUN \
   echo "*** Cleanup ***" && \
-  mv "./docker/docker-entrypoint.sh" "./" --ignore-permissions && \
+  cp "./docker/docker-entrypoint.sh" "./" && \
   rm -rf "./docker" && \
   rm -rf "./.git" && \
   echo "*** Make docker-entrypoint.sh executable ***" && \
