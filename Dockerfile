@@ -15,6 +15,12 @@ RUN \
 # Bundle app source
 COPY . ./
 
+# Give permissions for the files
+RUN chgrp -R 0 "${APP_HOME}/public" && \
+    chmod -R g=u "${APP_HOME}/public" && \
+    chgrp -R 0 "${APP_HOME}/config" && \
+    chmod -R g=u "${APP_HOME}/config"
+
 # Copy default chats, characters and user avatars to <folder>.default folder
 RUN \
   echo "*** Copy default chats, characters and user avatars to <folder>.default folder ***" && \
