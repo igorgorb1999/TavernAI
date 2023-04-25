@@ -26,9 +26,9 @@ RUN chgrp -R 0 "${APP_HOME}/public" && \
 # Copy default chats, characters and user avatars to <folder>.default folder
 RUN \
   echo "*** Copy default chats, characters and user avatars to <folder>.default folder ***" && \
-  cp "./public/characters"    "./public/characters.default" && \
-  cp "./public/chats"         "./public/chats.default" && \
-  cp "./public/User Avatars"  "./public/User Avatars.default" && \
+  cp -R "./public/characters"    "./public/characters.default" && \
+  cp -R "./public/chats"         "./public/chats.default" && \
+  cp -R "./public/User Avatars"  "./public/User Avatars.default" && \
   cp "./public/settings.json"   "./public/settings.json.default" && \
 
   echo "*** Create symbolic links to config directory ***" && \
